@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Saisir les informations sur le nœud</h2>
+<div mat-dialog-content>
+  <p> Nom: <input type="text" [value]="node.name" #name></p>
+  <p> Valeurs: <input type="text" [value]="node.value" #value></p>
+   
+  <div style="display: flex; flex-direction: row; margin-bottom: 20px;">
+    <p style="margin-right: 30px;">liaisons 1 :</p>
+    <select name="node1" id="node1" #node1 class="option-param">
+      <ng-container *ngFor="let node1 of nodes">
+        <option [value]="node1.id" *ngIf="node.id !== node1.id" [selected] = "node.children[0] == node1.id || node.children[1] == node1.id ">{{ node1.name }}</option>
+      </ng-container>
+     </select>
+  </div>
+  <div style="display: flex; flex-direction: row; margin-bottom: 20px;">
+    <p style="margin-right: 30px;">liaisons 2 :</p>
+    <select name="node2" id="node2" #node2 >
+      <ng-container *ngFor="let node1 of nodes">
+        <option [value]="node1.id" *ngIf="node.id !== node1.id" [selected] = "node.children[0] == node1.id || node.children[1] == node1.id ">{{ node1.name }}</option>
+      </ng-container>
+      <option value="-1">null</option>
+    </select>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Annuler</button>
+  <button mat-button (click)="onSave()">Enregistrer</button>
+</div>

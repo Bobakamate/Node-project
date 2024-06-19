@@ -1,0 +1,5 @@
+<!-- src/app/circle/circle.component.html -->
+<div class="circle" cdkDrag (cdkDragEnded)="onDragEnd($event)" [ngStyle]="{'transform': 'translate(' + position.x + 'px, ' + position.y + 'px)'}">
+    Node {{id}}
+  </div>
+  

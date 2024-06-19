@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+.circle {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+     
+    
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; padding : 0px;font-family: Roboto, "Helvetica Neue", sans-serif; }
+.non-selectable {
+    user-select: none; /* Pour empêcher la sélection du texte */
+    -webkit-user-select: none; /* Chrome, Safari, Opera */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+  }
+  

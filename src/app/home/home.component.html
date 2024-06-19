@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <title>Boba Fousseiny Kamate</title>
+</head>
+<body style="padding: 0px;">
+  <div class="container">
+    <p class="login-text" style="margin-top: 5px;margin-bottom: 40px;">Information du Noeud ({{ node.name}})</p>
+     <div class="input-param" style="margin-bottom: 20px;">
+      <input type="text" #nodename style="height: 40px;" placeholder="Nom du node" [value]="node.name">
+    </div>
+    <div class="input-param" style="margin-bottom: 20px;margin-top: 20px;">
+      <input type="text" #descriptionInput style="height: 60px;" placeholder="Entrez une Description" [value]="node.description" required>
+    </div>
+    <p class="login-text" style="margin-top: 20px;margin-bottom: 20px;">Saisie des Valeur</p>
+    <div>
+      <div class="input-param" *ngFor="let input of sharedDataParam let i = index">
+        <input type="text" [id]="'param' + i" placeholder="Entrez le nom de la Valeur" [value]="input.parametreName" #paramInput required>
+        <div class="boutton">
+          <img src="../../assets/poubelle.png" (click)="Deletes(input.id)" alt="poubelle" style="height: 30px;width: 30px;margin-left: 3px;margin-top: 3px;">
+        </div>
+      </div>
+    </div>
+    <div class="boutton" style="display: flex;justify-content: space-evenly;margin-bottom: 20px;">
+      <button id="button-add-param" (click)="addParametre()">Ajouter une valeur</button>
+    </div>
+    <div style="display: flex;justify-content: center;">
+      <p class="login-text" style="margin-top: 5px;margin-bottom: 40px;">Enfant du Noeud</p>
+     </div>
+     
+
+     <div class="input-param" style="display: flex; justify-content: space-evenly;">
+      <select #node1 name="node1" class="option-param" style="width: 150px;">
+        <option *ngFor="let child of children" [value]="child.id">{{ child.name }}</option>
+      </select>
+      <div class="boutton">
+        <img src="../../assets/poubelle.png" (click)="removediv($event)" alt="poubelle" style="height: 30px; width: 30px; margin-left: 3px; margin-top: 3px;">
+      </div>
+    </div>
+    <div class="input-param" style="display: flex; justify-content: space-evenly;">
+      <select #node1 name="node2" class="option-param" style="width: 150px;">
+        <option *ngFor="let child of children" [value]="child.id">{{ child.name }}</option>
+      </select>
+      <div class="boutton">
+        <img src="../../assets/poubelle.png" (click)="removediv($event)" alt="poubelle" style="height: 30px; width: 30px; margin-left: 3px; margin-top: 3px;">
+      </div>
+    </div>
+    
+    
+
+
+   <div style="display: flex;justify-content: space-evenly;">
+    <div  class="boutton"  >
+      <button id="button-add-param" (click)="next()">Generer</button>  
+    </div>
+     
+   </div>
+
+    <!-- Nouvelle section pour afficher les lignes générées -->
+    <div *ngIf="generatedLines.length > 0">
+      <h3>Lignes Générées:</h3>
+      <div *ngFor="let line of generatedLines; let i = index" class="input-param">
+        <select class="option-param" [id]="'parameter' + i">
+          <option>{{line.parametreName}}</option>
+        </select>
+        <select class="option-param" [id]="'operator' + i">
+          <option value="egal">=</option>
+          <option value="inferieur"><</option>
+          <option value="inferieur-ou-egal"><=</option>
+          <option value="superieur">></option>
+          <option value="superieur-ou-egal">>=</option>
+          <option value="different">!=</option>
+          <option value="addition">+</option>
+          <option value="soustraction">-</option>
+          <option value="multiplication">*</option>
+          <option value="division">/</option>
+          <option value="Intervalle">Intervalle</option>
+        </select>
+        <input type="text" placeholder="Valeur" [id]="'value' + i">
+        <input type="text" placeholder="Probabilité min" [id]="'probMin' + i">
+        <input type="text" placeholder="Probabilité max" [id]="'probMax' + i">
+      </div>
+      <div class="boutton">
+        <button id="button-save" (click)="save()">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
